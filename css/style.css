@@ -35,16 +35,16 @@ body {
 }
 
 .board {
-    max-width: 878px;
+    max-width: 906px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
 }
 
 .board  ul{
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .card {
@@ -52,6 +52,7 @@ body {
     height: 146px;
     border-radius: 5px;
     margin-bottom: 34px;
+    margin-right: 34px;
     position: relative;
     background-color: #A7E9AF;
     border: 1px solid #99CEA8;
@@ -71,6 +72,11 @@ body {
     position: absolute;
 }
 
+.card:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
 
 @media screen and (max-width: 614px) {
     .title{
@@ -85,5 +91,9 @@ body {
     .board ul{
         flex-wrap: nowrap;
         flex-direction: column;
+    }
+
+    .card {
+        margin-right: 0px;
     }
 }
