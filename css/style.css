@@ -52,11 +52,8 @@ body {
     height: 146px;
     border-radius: 5px;
     margin-bottom: 34px;
-    background-color: #A7E9AF;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
+    background-color: #A7E9AF;
     border: 1px solid #99CEA8;
 }
 
@@ -64,6 +61,16 @@ body {
     width: 100px;
     height: 100px;
 }
+
+.card-front {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+}
+
 
 @media screen and (max-width: 614px) {
     .title{
