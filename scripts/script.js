@@ -48,7 +48,7 @@ function randomize() {
 
 function flip (element) {
     if(count <= 2) {
-        flippedCards.push({element: element, flipped: 'true', back: element.querySelector(".back-face>img").getAttribute("src")});
+        flippedCards.push({element: element, back: element.querySelector(".back-face>img").getAttribute("src")});
 
         element.querySelector(".front-face.face").classList.add("flipped");
         element.querySelector(".back-face.face").classList.add("flipped");
@@ -78,6 +78,13 @@ function unflip() {
 
 function gameOver() {
     if (flippedCards.length === numberOfCards) {
-        alert("Congratulations, you've won!");
+        alert("Parabéns, você venceu em X jogadas!");
+        let answer = prompt("Deseja jogar novamente?");
+        if (answer === 'sim') {
+            numberOfCards = Number(prompt("Com quantas cartas você deseja jogar? (Insira um número par entre 4 e 14.)"));
+            document.querySelector(".board ul").innerHTML = "";
+            flippedCards = [];
+            populate();
+        }
     }
 }
