@@ -47,16 +47,22 @@ function randomize() {
 }
 
 function flip (element) {
-    if(document.querySelectorAll(".flipped").length/2 < 2) {
+    if(count <= 2) {
         flippedCards.push({element: element, flipped: 'true', back: element.querySelector(".back-face>img").getAttribute("src")});
+
         element.querySelector(".front-face.face").classList.add("flipped");
         element.querySelector(".back-face.face").classList.add("flipped");
+
         if (flippedCards.length % 2 === 0) {
             if(flippedCards[flippedCards.length-2].back === flippedCards[flippedCards.length-1].back){
-                console.log("equal");
-                console.log(flippedCards);
-            } else {setTimeout(unflip, 1000);}
-        } 
+                count = 0;
+                gameOver();
+            } else {
+                count = 0;
+                setTimeout(unflip, 1000);
+            }
+        }
+        count++;
     }
 }
 
@@ -68,4 +74,10 @@ function unflip() {
     flippedCards[flippedCards.length-1].element.querySelector(".back-face.face").classList.remove("flipped");
 
     flippedCards.length = flippedCards.length-2;
+}
+
+function gameOver() {
+    if (flippedCards.length === numberOfCards) {
+        alert("Congratulations, you've won!");
+    }
 }
