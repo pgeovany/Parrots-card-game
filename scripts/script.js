@@ -18,7 +18,7 @@ function populate() {
  
     for (let i = 0; i < numberOfCards; i++) {
         board.innerHTML += `
-        <li class="card">
+        <li onclick="flip(this)" class="card">
             <div class="front-face face">
                 <img src="/images/front.png" />
             </div>
@@ -40,4 +40,11 @@ function randomize() {
 
 function comparison() {
     return Math.random() - 0.5;
+}
+
+function flip (element) {
+    if(document.querySelectorAll(".flipped").length/2 < 2 ) {
+        element.querySelector(".front-face.face").classList.add("flipped");
+        element.querySelector(".back-face.face").classList.add("flipped");
+    }
 }

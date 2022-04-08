@@ -92,6 +92,9 @@ body {
     transform: translateY(-5px);
 }
 
+.flipped {
+    backface-visibility: visible;
+}
 
 @media screen and (max-width: 614px) {
     .title{
