@@ -1,4 +1,8 @@
+
 let cardsBack = ["/images/bobrossparrot.gif", "/images/metalparrot.gif", "/images/explodyparrot.gif", "/images/fiestaparrot.gif", "/images/revertitparrot.gif", "/images/tripletsparrot.gif", "/images/unicornparrot.gif"];
+
+let flippedCards = [];
+let count = 0;
 
 cardsBack.sort(comparison);
 
@@ -10,6 +14,10 @@ while (1) {
         break;
     }
     numberOfCards = Number(prompt("Com quantas cartas deseja jogar?"));
+}
+
+function comparison() {
+    return Math.random() - 0.5;
 }
 
 function populate() {
@@ -38,13 +46,26 @@ function randomize() {
     return newArray.sort(comparison);
 }
 
-function comparison() {
-    return Math.random() - 0.5;
-}
-
 function flip (element) {
-    if(document.querySelectorAll(".flipped").length/2 < 2 ) {
+    if(document.querySelectorAll(".flipped").length/2 < 2) {
+        flippedCards.push({element: element, flipped: 'true', back: element.querySelector(".back-face>img").getAttribute("src")});
         element.querySelector(".front-face.face").classList.add("flipped");
         element.querySelector(".back-face.face").classList.add("flipped");
+        if (flippedCards.length % 2 === 0) {
+            if(flippedCards[flippedCards.length-2].back === flippedCards[flippedCards.length-1].back){
+                console.log("equal");
+                console.log(flippedCards);
+            } else {setTimeout(unflip, 1000);}
+        } 
     }
+}
+
+function unflip() {
+    flippedCards[flippedCards.length-2].element.querySelector(".front-face.face").classList.remove("flipped");
+    flippedCards[flippedCards.length-2].element.querySelector(".back-face.face").classList.remove("flipped");
+
+    flippedCards[flippedCards.length-1].element.querySelector(".front-face.face").classList.remove("flipped");
+    flippedCards[flippedCards.length-1].element.querySelector(".back-face.face").classList.remove("flipped");
+
+    flippedCards.length = flippedCards.length-2;
 }
