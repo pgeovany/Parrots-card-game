@@ -23,7 +23,7 @@ function comparison() {
 
 function populate() {
     let board = document.querySelector(".board ul");
-    let backFace = randomize();
+    let auxArray = randomize();
  
     for (let i = 0; i < numberOfCards; i++) {
         board.innerHTML += `
@@ -32,7 +32,7 @@ function populate() {
                 <img src="/images/front.png" />
             </div>
             <div class="back-face face">
-                <img src="${backFace[i]}" />
+                <img src="${auxArray[i]}" />
             </div>
         </li>
         `
@@ -40,11 +40,11 @@ function populate() {
 }
 
 function randomize() {
-    let newArray = cardsBack.slice(0, (numberOfCards/2));
+    let auxArray = cardsBack.slice(0, (numberOfCards/2));
     for (let i = 0; i < (numberOfCards/2); i++) {
-        newArray.push(newArray[i]);
+        auxArray.push(auxArray[i]);
     }
-    return newArray.sort(comparison);
+    return auxArray.sort(comparison);
 }
 
 function flip (element) {
@@ -58,6 +58,7 @@ function flip (element) {
         if (flippedCards.length % 2 === 0) {
             if(flippedCards[flippedCards.length-2].back === flippedCards[flippedCards.length-1].back){
                 count = 0;
+                unclickable();
                 gameOver();
             } else {
                 count = 0;
@@ -93,4 +94,13 @@ function clear() {
     numberOfCards = Number(prompt("Com quantas cartas você deseja jogar? (Insira um número par entre 4 e 14.)"));
     document.querySelector(".board ul").innerHTML = "";
     flippedCards = [];
+    clicks = 0;
+}
+
+//Pairs that have already been flipped, won't call the 'flip' function on click anymore.
+function unclickable () {
+    for(let i = 0; i < flippedCards.length; i++) {
+        flippedCards[i].element.removeAttribute("onclick");
+        console.log(flippedCards);
+    }
 }
