@@ -3,6 +3,7 @@ let cardsBack = ["/images/bobrossparrot.gif", "/images/metalparrot.gif", "/image
 
 let flippedCards = [];
 let count = 0;
+let clicks = 0;
 
 cardsBack.sort(comparison);
 
@@ -47,6 +48,7 @@ function randomize() {
 }
 
 function flip (element) {
+    clicks++;
     if(count <= 2) {
         flippedCards.push({element: element, back: element.querySelector(".back-face>img").getAttribute("src")});
 
@@ -78,13 +80,17 @@ function unflip() {
 
 function gameOver() {
     if (flippedCards.length === numberOfCards) {
-        alert("Parabéns, você venceu em X jogadas!");
+        alert(`Parabéns, você venceu em ${clicks/2} jogadas!`);
         let answer = prompt("Deseja jogar novamente?");
         if (answer === 'sim') {
-            numberOfCards = Number(prompt("Com quantas cartas você deseja jogar? (Insira um número par entre 4 e 14.)"));
-            document.querySelector(".board ul").innerHTML = "";
-            flippedCards = [];
+            clear();
             populate();
         }
     }
+}
+
+function clear() {
+    numberOfCards = Number(prompt("Com quantas cartas você deseja jogar? (Insira um número par entre 4 e 14.)"));
+    document.querySelector(".board ul").innerHTML = "";
+    flippedCards = [];
 }
