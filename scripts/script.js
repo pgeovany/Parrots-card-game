@@ -23,7 +23,7 @@ function comparison() {
 
 function populate() {
     let board = document.querySelector(".board ul");
-    let auxArray = randomize();
+    let auxArray = getCardsBack();
  
     for (let i = 0; i < numberOfCards; i++) {
         board.innerHTML += `
@@ -39,7 +39,7 @@ function populate() {
     }
 }
 
-function randomize() {
+function getCardsBack() {
     let auxArray = cardsBack.slice(0, (numberOfCards/2));
     for (let i = 0; i < (numberOfCards/2); i++) {
         auxArray.push(auxArray[i]);
