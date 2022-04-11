@@ -14,6 +14,18 @@ body {
     display: flex;
     align-items: center;
     flex-direction: column;
+    position: relative;
+}
+
+.timer {
+    position: absolute;
+    right: 5%;
+    top: 5%;
+}
+
+.timer {
+    font-size: 32px;
+    font-weight: bold;
 }
 
 .title h1 {
@@ -114,5 +126,9 @@ body {
 
     .card {
         margin-right: 0px;
+    }
+
+    .timer {
+        top: 14px;
     }
 }
