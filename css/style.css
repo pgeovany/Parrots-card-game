@@ -79,7 +79,7 @@ body {
     justify-content: center;
     position: absolute;
     backface-visibility: hidden;
-    transition: all 500ms;
+    transition: all 1000ms;
     transform-style: preserve-3d;
   }
 
